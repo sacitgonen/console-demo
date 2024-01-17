@@ -52,6 +52,7 @@ import { getPVCAccessModes, AccessModeSelector } from '../../access-modes/access
 import './_clone-pvc-modal.scss';
 
 const ClonePVCModal = withHandlePromise((props: ClonePVCModalProps) => {
+  const [sacit, setSacit] = React.useState<string>();
   const { t } = useTranslation();
   const { close, cancel, resource, handlePromise, errorMessage, inProgress } = props;
   const { name: pvcName, namespace } = resource?.metadata;
@@ -128,6 +129,7 @@ const ClonePVCModal = withHandlePromise((props: ClonePVCModalProps) => {
   return (
     <Form onSubmit={submit}>
       <div className="modal-content">
+        <input type={'text'} value={sacit} onChange={(event) => setSacit(event.target.value)} />
         <ModalTitle>{t('console-app~Clone')}</ModalTitle>
         <ModalBody>
           <FormGroup
